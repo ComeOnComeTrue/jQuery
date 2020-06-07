@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .tpl {
+            display: none;
+        }
+
+        .wrapper {
+            overflow: hidden;
+            border: 2px solid black;
+            width: 600px;
+            margin: 100px auto 0px;
+        }
+
+        .movieSection {
+            float: left;
+            width: 180px;
+            height: 180px;
+            padding: 10px;
+        }
+
+        .movieSection img {
+            width: 100%;
+            height: 150px;
+            cursor: pointer;
+        }
+
+        .movieSection h3 {
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="tpl">
+            <img src="" alt="">
+            <h3 class="movieName"></h3>
+        </div>
+    </div>
+    <img src="./回调地狱图片预览与解析/callback.jpg" alt="" class="img1">
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $.ajax({
+            url: 'https://easy-mock.com/mmmock/Sc09440d3c098813c612cce6/movie/power',
+            type: 'POST',
+            data: {
+                username: 'cst',
+                password: '12123'
+            },
+            success: function (res) {
+                if (res.data.power == 'root') {
+                    // vip 网络地址发送请求
+                    $.ajax({
+                        url: 'https://easy-mock.com/mmmock/Sc09440d3c098813c612cce6/movie/movieList',
+                        type: 'GET',
+                        success: function (res) {
+                            var data = res.data;
+                            var $Wrapper = $('.wrapper');
+                            $.each(data, function (index, ele) {
+                                //ele.name  ele.poster
+                                var $MovieSection = $('.tpl').clone().removeClass('tpl').addClass('movieSection');
+                                $MovieSection.data({ id: ele.id }).on('click', function () {
+                                    //点击后显示对应的内容
+                                    $.ajax({
+                                        url: 'https://easy-mock.com/mmmock/Sc09440d3c098813c612cce6/movie/movieInfo',
+                                        type: 'GET',
+                                        data: {
+                                            movieId: $(this).data('id')
+                                        },
+                                        success: function (res) {
+                                            var data = res.data;
+                                            var direct = data.direct;
+                                            var gut = data.gut;
+                                            var mainActor = data.mainActor;
+                                            var screenWriter = data.screenWriter;
+
+                                            var htmlStr = '<div class="mask">\
+                                                <p>导演: '+ direct + '</p>\
+                                                <p>剧情: '+ gut + '</p>\
+                                                <p>主演: '+ mainActor.reduce(function (prev) { //从右到左遍历最后return
+                                                prev += curv + '';
+                                                return prev;
+                                            }) + '</p>\
+                                                <p>编剧: '+ screenWriter.reduce(function (prev) {
+                                                prev += curv + '';
+                                                return prev;
+                                            }) + '</p>\
+                                            </div>'
+
+                                            $(htmlStr)
+                                                .appendTo('body')
+                                                .css({ position: 'absolute', left: $(window).outerWidth() / 2, bottom: 100, width: 400, marginLeft: -200 })//marginLeft: $('.mask').outerWidth() / 2,后填的宽度所以随便点-200
+                                        }
+
+                                    }).children()
+                                        .eq(0).attr('src', ele.poster)
+                                        .next().text(ele.name);
+                                    $Wrapper.append($MovieSection);
+                                })
+                            })
+                        }
+                    })
+                } else {
+                    //非vip
+                }
+            }
+        });
+
+        //解决回调地狱
+        //then
+        (function () {//先立即执行，返回请求结果
+            return $.ajax({
+                url: 'https://easy-mock.com/mmmock/Sc09440d3c098813c612cce6/movie/power',
+                type: 'POST',
+                data: {
+                    username: 'cst',
+                    password: '12123'
+                }
+            });
+
+        })().then(function (res) {//请求成功后再请求vip的
+            if (res.data.power == 'root') {
+                // vip 网络地址发送请求
+                return $.ajax({//请求返回出去
+                    url: 'https://easy-mock.com/mmmock/Sc09440d3c098813c612cce6/movie/movieList',
+                    type: 'GET',
+                });
+            }
+        }).then(function () {
+            var data = res.data;
+            var $Wrapper = $('.wrapper');
+            var df = $.Deferred(); //新的
+            $.each(data, function (index, ele) {
+                //ele.name  ele.poster
+                var $MovieSection = $('.tpl').clone().removeClass('tpl').addClass('movieSection');
+                $MovieSection
+                    .data({ id: ele.id })
+                        .on('click', function () {
+                            df.resolve( $(this) ); // 注册成功 
+                        })
+                            .children()
+                                .eq(0).attr('src', ele.poster)
+                                    .next().text(ele.name);
+                $Wrapper.append($MovieSection);
+            })
+            return df.promise();//返回注册
+        }).then(function (dom) { //点击成功后的请求电影详情
+                return $.ajax({
+                    url: 'https://easy-mock.com/mmmock/Sc09440d3c098813c612cce6/movie/movieInfo',
+                    type: 'GET',
+                    data: {
+                        movieId: dom.data('id')//$(this)换dom
+                    },
+                });
+            }).then(function (res) {//得到数据后进行渲染
+                var data = res.data;
+                var direct = data.direct;
+                var gut = data.gut;
+                var mainActor = data.mainActor;
+                var screenWriter = data.screenWriter;
+
+                var htmlStr = '<div class="mask">\
+                    <p>导演: '+ direct + '</p>\
+                    <p>剧情: '+ gut + '</p>\
+                    <p>主演: '+ mainActor.reduce(function (prev) { //从右到左遍历最后return
+                    prev += curv + '';
+                    return prev;
+                }) + '</p>\
+                    <p>编剧: '+ screenWriter.reduce(function (prev) {
+                    prev += curv + '';
+                    return prev;
+                }) + '</p>\
+                </div>'
+
+                $(htmlStr)
+                    .appendTo('body')
+                    .css({ position: 'absolute', left: $(window).outerWidth() / 2, bottom: 100, width: 400, marginLeft: -200 })//marginLeft: $('.mask').outerWidth() / 2,后填的宽度所以随便点-200
+            })
+
+
+
+
+    </script>
+</body>
+
+</html>
