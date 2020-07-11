@@ -1,0 +1,485 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    color: #333;
+}
+
+ul{
+    list-style: none; /*清除符号*/
+}
+a{
+   text-decoration: none;/*清除下划线*/
+}
+a:hover{
+    color: #e1251b;
+}
+
+.mod_container {
+    width: 1903px;
+    background-color: #E3E4E5;
+}
+/* 头部导航 */
+.mod_container .shortcut{
+    width: 100%;
+    height: 100%;
+}
+.mod_container .shortcut .w{
+    width: 1190px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 auto;
+    border: 1px solid red;
+}
+
+.mod_container .shortcut .w ul li {
+    color: #999;
+}
+.mod_container .shortcut .w .fl {
+    float: left;
+}
+
+
+
+.mod_container .shortcut .w .fr {
+    float: right;
+}
+.mod_container .shortcut .w .fr li{
+    display: inline-block;
+}
+.mod_container .shortcut .w .fr li.login{
+    margin-right: 8px;
+}
+.mod_container .shortcut .w .fr li.login .fontRed{
+    margin-left: 7px;
+}
+.mod_container .shortcut .w .fr li .fontRed{
+    color: red;
+
+}
+.mod_container .shortcut .w .fr li.dt{
+    padding: 0 7px;
+}
+.mod_container .shortcut .w .fr li.spacer{
+    margin: 11px 5px 0;
+    width: 1px;
+    height: 10px;
+    background-color: #ccc;
+}
+/* 头部 */
+.header{
+    width: 100%;
+    height: 141px;
+    background-color: #fff;
+}
+.header .w {
+    position: relative;
+    width:1190px;
+    height: 100%;
+    margin: 0 auto;
+}
+.header .w .logo {
+    position: absolute;
+    left: 0;
+    width: 190px;
+    height: 120px;
+}
+.header .w .logo a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://misc.360buyimg.com/mtd/pc/index_2019/1.0.0/assets/sprite/header/sprite.png");
+}
+.header .w .search{
+    position: absolute;
+    left: 260px;
+    top: 25px;
+    width: 550px;
+    height: 36px;
+}
+.header .w .cw-icon{
+    position: absolute;
+    right: 230px;
+    top: 25px;
+    width: 132px;
+    height: 36px;
+    border: 1px solid #ddd;
+}
+.header .w .cw-icon a {
+    color: #e1251b;
+}
+.header .w .hotwords{
+    position: absolute;
+    left: 260px;
+    top: 65px;
+    width: 550px;
+    height: 20px;
+}
+.header .w .hotwords a {
+    float: left;
+    margin-right: 10px;
+    white-space: nowrap;
+    color: #999;
+}
+.header .w .hotwords a:hover{
+    color: #e1251b;
+}
+.header .w .hotwords .a_red{
+    color: red;
+}
+.header .w .navitems{
+    position: absolute;
+    left: 203px;
+    bottom: 0;
+    height: 60px;
+}
+.header .w .navitems .navitems-group1{
+    padding-top:20px; 
+}
+.header .w .navitems .navitems-group1 .navitems-lk{
+    display: inline-block;
+}
+.header .w .navitems .navitems-group1 .navitems-lk a{
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px;
+    color: #333;
+    margin: 0 10px;
+}
+.header .w .navitems .navitems-group1 .navitems-lk a:hover{
+    color: #e1251b;
+}
+.header .w .navitems .navitems-group1 .navitems-lk .a_red{
+    color: red;
+}
+.header .w .treasure{
+    position: absolute;
+    right: 0;
+    width: 190px;
+    height: 120px;
+}
+.header .w .treasure a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://img14.360buyimg.com/babel/jfs/t1/100606/3/13200/30840/5e563717E47a9fcd3/12bd2db53bf4ca64.png.webp");
+
+}
+
+/* 内容区域 */
+.fs{
+    width: 100%;
+    height: 480px;
+}
+.fs .fs_content{
+    width:1190px;
+    height: 100%;
+    margin: 0 auto;
+}
+.fs .fs_content .float{
+    float: left;
+}
+.fs .fs_content .fs_col1{
+    width: 190px;
+    height: 470px;
+    margin: 10px 10px 0 0; 
+    /* background-color: red; */
+}
+.fs .fs_content .fs_col2{
+    width: 590px;
+    height: 470px;
+    margin: 10px 10px 0 0;
+    /* background-color: red; */
+}
+.fs .fs_content .fs_col3{
+    width: 190px;
+    height: 470px;
+    margin: 10px 10px 0 0;
+    font-size:0;
+}
+.fs .fs_content .fs_col3 .recommend-item{
+    display: inline-block;
+    width: 190px;
+    height: 150px;
+}
+.fs .fs_content .fs_col3 .recommend-item .recommend-item__image{
+    width: 190px;
+    height: 150px;
+    margin-bottom:10px; 
+    
+}
+
+.fs .fs_content .fs_col4{
+    width: 190px;
+    height: 470px;
+    margin-top: 10px;
+    background-color: #fff;
+}
+
+.fs .fs_content .fs_col4 .J_user{
+    width: 100%;
+    height: 102px;
+    position: relative;
+}
+.fs .fs_content .fs_col4 .J_user .user_inner .JD_logo{
+    overflow: hidden;
+    position: absolute;
+    left: 20px;
+    top: 13px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    
+}
+.fs .fs_content .fs_col4 .J_user .user_inner .JD_logo img{
+    width: 100%;
+    height: 100%;
+}
+
+.fs .fs_content .fs_col4 .J_user .user_inner .user_show{
+    position: absolute;
+    top: 16px;
+    left: 74px;
+    right: 10px;
+}
+.fs .fs_content .fs_col4 .J_user .user_profit{
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+    height: 25px;
+    text-align: center;
+    
+}
+.fs .fs_content .fs_col4 .J_user .user_profit::after{
+    width: 130px;
+    content: '';
+    display: block;
+    clear: both;
+    margin:9px 0 0 12px; 
+    border-bottom: 1px solid #ddd;
+}
+.fs .fs_content .fs_col4 .J_user .user_profit a{
+    display: inline-block;
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 800;
+}
+.fs .fs_content .fs_col4 .J_user .user_profit .user_profit_l{
+    margin-right: 10px;
+    background-color: red;
+    color: #fff;
+}
+.fs .fs_content .fs_col4 .J_user .user_profit .user_profit_r{
+    background-color: #363634;
+    color: #e5d790;;
+}
+
+
+.fs .fs_content .fs_col4 .J_news{
+    width: 100%;
+    height: 130px;
+}
+.fs .fs_content .fs_col4 .J_news .news_hd{
+    width: 190px;
+    height: 30px;
+    line-height: 30px;
+    position: relative;
+    padding-top: 10px;
+}
+
+.fs .fs_content .fs_col4 .J_news .news_hd h5{
+    display: inline-block;
+    margin-left: 15px;
+} 
+.fs .fs_content .fs_col4 .J_news .news_hd a{
+    position: absolute;
+    right: 10px;
+    
+}
+.fs .fs_content .fs_col4 .J_news .news_hd a span{
+    margin-left: 10px;
+}
+.fs .fs_content .fs_col4 .J_news .news_list{
+    width: 160px;
+    height: 88px;
+    margin: 0 10px;
+    
+}
+.fs .fs_content .fs_col4 .J_news .news_list::after{
+    width: 130px;
+    content: '';
+    display: block;
+    clear: both;
+    margin:5px 0 0 12px; 
+    border-bottom: 1px solid #ddd;
+}
+.fs .fs_content .fs_col4 .J_news .news_list a{
+    display: inline-block;
+    width:170px;
+    height: 17px;
+    line-height: 17px;
+    white-space: nowrap;/*取消换行*/
+    overflow: hidden;/*多出来的隐藏*/
+    text-overflow:ellipsis;/*省略号*/
+}
+.fs .fs_content .fs_col4 .J_news .news_list a span{
+    display: inline-block;
+    width: 35px;
+    height: 16px;
+    text-align: center;
+    line-height: 16px;
+    background-color: orchid;
+    margin-right: 5px;
+    color: bisque;
+}
+.fs .fs_content .fs_col4 .news_list{
+    width: 100%;
+    height: 238px;
+}
+
+.fs .fs_content .fs_col4 .J_service{
+    width: 190px;
+    height: 238px;
+    overflow: hidden;
+
+}
+.fs .fs_content .fs_col4 .J_service .service_entry{
+    width: 189px;
+    height: 206px;
+    padding: 5px 0;
+    font-size: 0;
+    /* display: none; */
+}
+.fs .fs_content .fs_col4 .J_service .service_entry a {
+    float: left;
+    position: relative;
+    width: 63px;
+    height: 55px;
+}
+.fs .fs_content .fs_col4 .J_service .service_entry a img{
+    position: absolute;
+    left: 50%;
+    margin-left: -14px;
+    width: 28px;
+    height: 28px;
+}
+.fs .fs_content .fs_col4 .J_service .service_entry a span{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 27px;
+    line-height: 27px;
+    text-align: center;
+}
+
+.fs .fs_content .fs_col4 .J_service .services_content{
+    position: relative;
+    width: 189px;
+    height: 206px;
+    padding: 5px 0;
+    display: none;
+}
+.fs .fs_content .fs_col4 .J_service .services_content .header{
+    height: 37px;
+    font-size: 0;
+}
+.fs .fs_content .fs_col4 .J_service .services_content .header span{
+    display: inline-block;
+    width: 63px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    cursor: pointer;
+    padding-bottom: 3px;
+}
+.fs .fs_content .fs_col4 .J_service .services_content .header span.active{
+    color:red;
+    border-bottom: 2px solid red;
+}
+.fs .fs_content .fs_col4 .J_service .services_content .content{
+    position: relative;
+    z-index: 1;
+    width: 159px;
+    height: 189px;
+    padding: 0 15px;
+    background-color: #fff;
+    width:160px;
+    padding-top: 10px;
+    display: none;
+}
+.fs .fs_content .fs_col4 .J_service .services_content .huafei_content .item_tab{
+    height: 21px;
+    padding-top: 12px;
+    overflow: hidden;
+}
+.fs .fs_content .fs_col4 .J_service .services_content .huafei_content .item_tab a{
+    display: inline-block;
+    line-height: 16px;
+    color: #666;
+    height: 16px;
+    padding-right: 2px;
+}
+
+
+label{
+    display: inline-block;
+    width: 34px;
+}
+#number{
+    display: inline-block;
+    width: 116px;
+    height: 16px;
+}
+#prices{
+    width: 120px;
+    height: 16px;
+}
+.h_charge_content  div{
+    padding: 5px 0;
+}
+.h_charge_content .prices_range{
+    color: red;
+}
+.h_charge_content .kuaisu_prices{
+    display: inline-block;
+}
+.h_charge_content .kuaisu_prices input{
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    width: 60px;
+    border-radius: 20px;
+    background-color: red;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+}
+.h_charge_content .App_prices{
+    display: inline-block;
+}
+
+.services_content .close{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 50%;
+    bottom: -7px;
+    margin-left: -10px;
+    line-height: 20px;
+    font-size: 20px;
+    text-align: center;
+    z-index: 1;
+    background: #fff;
+}
+
+
+.floors{
+    width: 100%;
+    height: 30px;
+    background-color: orange;
+}

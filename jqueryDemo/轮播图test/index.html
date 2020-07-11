@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul,li {
+            list-style: none;
+        }
+        .wrapper {
+            position: relative;
+            width: 520px;
+            height: 280px;
+            border: 4px solid #ddd;
+            margin: 50px 0 0 200px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .banner__box {
+            position: absolute;
+            left: 0;
+            display: flex;
+            width: 3480px;
+        }
+        .banner__box li {
+            width: 520px;
+            height: 280px;
+        }
+        .btn {
+            position: absolute;
+            background-color: rgba(0, 0, 0, .2);
+            font-size: 36px;
+            color: #fff;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        .left-btn {
+            left: 10px;
+        }
+        .right-btn {
+            right: 10px;
+        }
+        .pointer {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            margin-left: -25px;
+            width: 80px;
+            height: 30px;
+            background-color: rgba(0, 0, 0, .5);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 20px;
+        }
+        .pointer .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <ul class="banner__box">
+            <li><img src="./images/1.jpg" alt="1" draggable="false"></li>
+            <li><img src="./images/2.jpg" alt="2" draggable="false"></li>
+            <li><img src="./images/3.jpg" alt="3" draggable="false"></li>
+            <li><img src="./images/4.jpg" alt="4" draggable="false"></li>
+            <li><img src="./images/5.jpg" alt="5" draggable="false"></li>
+            <li><img src="./images/1.jpg" alt="1" draggable="false"></li>
+        </ul>
+        <div class="btn left-btn">&lt</div>
+        <div class="btn right-btn">&gt</div>
+        <div class="pointer">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+    
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script src="./js/test.js"></script>
+</body>
+</html>

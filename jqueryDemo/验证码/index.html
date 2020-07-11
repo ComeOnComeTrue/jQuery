@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            margin: 30px;
+            width: 345px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .inputBox {
+            position: relative;
+        }
+
+        .inputBox input {
+            width: 300px;
+            outline: none;
+            padding: 15px;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .inputBox span {
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            transform: translateY(-50%);
+            color: green;
+            display: none;
+        }
+
+        .error {
+            padding-left: 20px;
+            font-size: 12px;
+            color: red;
+            display: none;
+        }
+
+        .canvasBox {
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .canvasBox canvas {
+            border: 1px solid #ddd;
+        }
+
+        .canvasBox .refresh {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 40px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            background-color: black;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .submit {
+            padding: 10px 20px;
+            border: 0;
+            font-size: 18px;
+            border-radius: 5px;
+            background-color: greenyellow;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="inputBox">
+            <input type="text" placeholder="请输入验证码">
+            <span>正确</span>
+        </div>
+        <p class="error"></p>
+        <div class="canvasBox">
+            <div class="imgBox">
+                <canvas id="myCanvas" width="300" height="80"></canvas>
+            </div>
+            <span class="refresh">刷新</span>
+        </div>
+        <button class="submit">submit</button>
+    </div>
+
+    <script src="../jquery-3.4.1.js"></script>
+    <script>
+
+        // 随机生成数字和字母 不区分大小
+        // 输入验证码 点击提交-》进行判断 正确/错误
+
+
+        const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // 存储数字与英文字母
+        let value = ''; // 放置验证码
+
+
+        // 65-90 97-122 是24字母 大写与小写
+        for (let i = 65; i < 122; i++) {
+            if (i > 90 && i < 97) {
+                continue; /*继续 终止本次循环继续下次循环*/
+            }
+            arr.push(String.fromCharCode(i));
+        }
+
+
+        function createCanvas() {
+            // 选取要显示的六个随机字符
+            let canvasStr = '';
+            value = '';
+            for (let i = 0; i < 6; i++) {
+                let a = arr[Math.floor(Math.random() * arr.length)];
+                canvasStr += a + ' ';
+                value += a;
+            }
+            // 生成验证码区域
+            const myCanvas = document.getElementById('myCanvas');
+            const ctx = myCanvas.getContext('2d');
+            const oImg = new Image();
+            oImg.src = './img/pic6.jpeg';
+            oImg.onload = function () { // 获取到图片之后触发
+                let bg = ctx.createPattern(oImg, 'repeat'); // 创建图案
+                ctx.fillStyle = bg; // 填充
+                ctx.fillRect(0, 0, myCanvas.width, myCanvas.height); // 填充矩形范围
+                ctx.textAlign = 'center'; // 文字在中心开始填充
+                ctx.fillStyle = '#ccc';
+                ctx.font = '46px Roboto Slab';
+                ctx.setTransform(1, -0.12, 0.3, 1, 0, 12) // 参数：水平缩放、水平倾斜、垂直倾斜、垂直缩放、水平移动、垂直移动
+                ctx.fillText(canvasStr, myCanvas.width / 2, 60); // 填充文字
+            }
+        }
+        createCanvas();
+
+        $('.refresh').on('click', function () {
+            createCanvas();
+        });
+
+        $('.submit').on('click', function () {
+            showResult();
+        });
+
+        // 
+        function showResult() {
+            const inputValue = $('.inputBox input').val().toLowerCase();
+            if(inputValue != value.toLowerCase()) {
+                $('.inputBox span').css('display', 'none');
+                $('.error').css('display', 'block').html('验证码错误，请重新输入');
+            }else{
+                alert('成功');
+            }
+            createCanvas();
+        }
+        $('.inputBox input').on('input', function () {
+            setTimeout( () => {
+                const inputValue = $('.inputBox input').val().toLowerCase();
+                if(inputValue == value.toLowerCase()) {
+                    $('.inputBox span').css('display', 'block');
+                    $('.error').css('display', 'none').html('验证码错误，请重新输入');
+                }else{
+                    $('.inputBox span').css('display', 'none');
+                }
+            },500);
+        });
+    </script>
+</body>
+
+</html>
